@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PICOVERSE — Struktur Kelas</title>
+
+<style>
+
+/* ================= RESET ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f1f5f9;
+    color: #172033;
+}
+
+/* ================= SCROLL PROGRESS ================= */
+
+#scrollProgress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: #2563eb;
+    z-index: 9999;
+}
+
+/* ================= HEADER ================= */
+
+header {
+    min-height: 380px;
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    color: white;
+
+    background: #0f172a;
+}
+
+/* VIDEO BACKGROUND */
+
+.video-bg {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: 0;
+}
+
+/* OVERLAY */
+
+.video-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(15, 23, 42, 0.85),
+            rgba(37, 99, 235, 0.60),
+            rgba(79, 70, 229, 0.70)
+        );
+
+    z-index: 1;
+}
+
+/* ================= LOGO ================= */
+
+.logo {
+    width: 115px;
+    height: 115px;
+
+    margin-bottom: 18px;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,0.15);
+
+    border: 2px solid rgba(255,255,255,0.35);
+
+    backdrop-filter: blur(10px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    position: relative;
+    z-index: 2;
+
+    transition: 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.08) rotate(-3deg);
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+/* Jika logo tidak ditemukan */
+
+.logo-fallback {
+    font-size: 45px;
+    font-weight: bold;
+}
+
+/* ================= HEADER TEXT ================= */
+
+header h1 {
+    position: relative;
+    z-index: 2;
+
+    font-size: 48px;
+    letter-spacing: 6px;
+
+    margin-bottom: 10px;
+
+    animation: titleIn 0.8s ease;
+}
+
+header p {
+    position: relative;
+    z-index: 2;
+
+    font-size: 18px;
+    opacity: 0.9;
+
+    animation: subtitleIn 1s ease;
+}
+
+/* ================= HEADER DECORATION ================= */
+
+header::before,
+header::after {
+    content: "";
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.08);
+
+    pointer-events: none;
+}
+
+header::before {
+    width: 360px;
+    height: 360px;
+
+    top: -210px;
+    right: -90px;
+}
+
+header::after {
+    width: 280px;
+    height: 280px;
+
+    bottom: -190px;
+    left: -70px;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes titleIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes subtitleIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 0.9;
+        transform: translateY(0);
+    }
+}
+
+/* ================= NAVBAR ================= */
+
+nav {
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+
+    background: rgba(255,255,255,0.92);
+
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.nav-inner {
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 12px 5%;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+nav a {
+    text-decoration: none;
+
+    color: #334155;
+
+    font-weight: bold;
+
+    padding: 9px 15px;
+
+    border-radius: 9px;
+
+    transition: 0.2s;
+}
+
+nav a:hover {
+    background: #dbeafe;
+
+    color: #2563eb;
+}
+
+/* ================= CONTAINER ================= */
+
+.container {
+    width: 90%;
+
+    max-width: 1100px;
+
+    margin: 45px auto;
+}
+
+/* ================= JUDUL ================= */
+
+.judul {
+    text-align: center;
+
+    margin-bottom: 28px;
+}
+
+.judul h2 {
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+.judul p {
+    color: #64748b;
+}
+
+/* ================= STATISTIK ================= */
+
+.stats {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 70px;
+}
+
+.info {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 24px;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 28px rgba(15,23,42,0.07);
+
+    transition: 0.25s;
+}
+
+.info:hover {
+    transform: translateY(-5px);
+}
+
+.info .icon {
+    font-size: 30px;
+}
+
+.info h3 {
+    font-size: 28px;
+
+    color: #2563eb;
+
+    margin: 8px 0 4px;
+}
+
+/* ================= STRUKTUR ================= */
+
+.struktur {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+.baris {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 22px;
+
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+
+    width: 235px;
+
+    padding: 24px;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow:
+        0 7px 25px rgba(15,23,42,0.08);
+
+    transition: 0.25s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+}
+
+/* FOTO PENGURUS */
+
+.foto {
+    width: 95px;
+    height: 95px;
+
+    margin: auto auto 15px;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    background: #dbeafe;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 34px;
+
+    border: 3px solid #2563eb;
+}
+
+.foto img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.jabatan {
+    color: #2563eb;
+
+    font-weight: 800;
+
+    font-size: 13px;
+
+    letter-spacing: 0.5px;
+}
+
+.nama {
+    font-size: 18px;
+
+    font-weight: 800;
+
+    margin-top: 8px;
+}
+
+.garis {
+    width: 3px;
+
+    height: 25px;
+
+    background: #2563eb;
+}
+
+/* ================= ANGGOTA ================= */
+
+.siswa-section {
+    margin-top: 80px;
+}
+
+.search {
+    width: 100%;
+
+    max-width: 580px;
+
+    display: block;
+
+    margin: 0 auto 18px;
+
+    padding: 15px 18px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    outline: none;
+
+    background: white;
+
+    color: #172033;
+
+    transition: 0.2s;
+}
+
+.search:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 4px rgba(37,99,235,0.1);
+}
+
+/* ================= FILTER ================= */
+
+.filter {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-bottom: 25px;
+
+    flex-wrap: wrap;
+}
+
+.filter button {
+    border: 0;
+
+    padding: 9px 15px;
+
+    border-radius: 999px;
+
+    background: #e2e8f0;
+
+    color: #334155;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.filter button:hover {
+    transform: translateY(-2px);
+}
+
+.filter button.active {
+    background: #2563eb;
+
+    color: white;
+}
+
+/* ================= DAFTAR SISWA ================= */
+
+.daftar-siswa {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.siswa {
+    background: white;
+
+    padding: 15px;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 4px 15px rgba(15,23,42,0.06);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.siswa:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(37,99,235,0.12);
+}
+
+.siswa::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(37,99,235,0.08),
+            transparent
+        );
+
+    transition: 0.5s;
+}
+
+.siswa:hover::before {
+    left: 100%;
+}
+
+.foto-siswa {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 3px solid #2563eb;
+
+    flex-shrink: 0;
+
+    transition: 0.3s;
+}
+
+.siswa:hover .foto-siswa {
+    transform: scale(1.1);
+}
+
+.nomor {
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 800;
+
+    font-size: 13px;
+
+    margin-bottom: 5px;
+}
+
+.siswa-name {
+    font-weight: 700;
+
+    transition: 0.25s;
+}
+
+.siswa:hover .siswa-name {
+    color: #2563eb;
+
+    transform: translateX(4px);
+}
+
+.siswa:active {
+    transform: scale(0.97);
+}
+
+.no-result {
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #64748b;
+}
+
+/* ================= PRESTASI ================= */
+
+.achievement-wrap {
+    margin-top: 80px;
+}
+
+.achievements {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.achievement {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 7px 25px rgba(15,23,42,0.07);
+
+    transition: 0.25s;
+}
+
+.achievement:hover {
+    transform: translateY(-5px);
+}
+
+.achievement .trophy {
+    font-size: 38px;
+
+    margin-bottom: 10px;
+}
+
+.achievement h3 {
+    margin-bottom: 8px;
+}
+
+/* ================= MODAL ================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(2,6,23,0.75);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 1000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-box {
+    background: white;
+
+    width: 100%;
+
+    max-width: 440px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    text-align: center;
+
+    position: relative;
+
+    animation: pop 0.25s ease;
+}
+
+.close {
+    position: absolute;
+
+    right: 17px;
+    top: 12px;
+
+    border: 0;
+
+    background: none;
+
+    font-size: 27px;
+
+    cursor: pointer;
+
+    color: #172033;
+}
+
+.modal-icon {
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    margin: auto auto 15px;
+
+    background: #dbeafe;
+
+    display: block;
+
+    object-fit: cover;
+
+    border: 4px solid #2563eb;
+}
+
+.bio {
+    text-align: left;
+
+    line-height: 2;
+
+    margin-top: 18px;
+}
+
+.bio p {
+    border-bottom: 1px solid #e2e8f0;
+
+    padding: 5px 0;
+}
+
+@keyframes pop {
+    from {
+        transform: scale(0.88);
+
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+
+        opacity: 1;
+    }
+}
+
+/* ================= SCROLL REVEAL ================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(35px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    margin-top: 70px;
+
+    padding: 32px;
+
+    background: #0f172a;
+
+    color: white;
+
+    text-align: center;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 800px) {
+
+    .daftar-siswa {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats,
+    .achievements {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 38px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    header {
+        min-height: 330px;
+    }
+
+    header h1 {
+        font-size: 31px;
+
+        letter-spacing: 4px;
+    }
+
+    header p {
+        font-size: 15px;
+    }
+
+    .logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .daftar-siswa {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        width: 90%;
+    }
+
+    .nav-inner {
+        justify-content: flex-start;
+
+        overflow-x: auto;
+
+        flex-wrap: nowrap;
+    }
+
+    .modal-box {
+        padding: 25px 20px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= SCROLL PROGRESS ================= -->
+
+<div id="scrollProgress"></div>
+
+<!-- ================= HEADER ================= -->
+
+<header id="beranda">
+
+```
+<video
+    class="video-bg"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+>
+    <source src="video/background.mp4" type="video/mp4">
+</video>
+
+<div class="video-overlay"></div>
+
+
+<!-- LOGO KELAS -->
+
+<div class="logo">
+
+    <img
+        src="foto/logo-kelas.png"
+        alt="Logo PICOVERSE"
+        onerror="logoError(this)"
+    >
+
+</div>
+
+
+<h1>PICOVERSE</h1>
+
+<p>SMAN 1 SUMATERA BARAT</p>
+```
+
+</header>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+```
+<div class="nav-inner">
+
+    <a href="#beranda">
+        Beranda
+    </a>
+
+    <a href="#struktur">
+        Struktur
+    </a>
+
+    <a href="#anggota">
+        Anggota
+    </a>
+
+    <a href="#prestasi">
+        Prestasi
+    </a>
+
+</div>
+```
+
+</nav>
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+```
+<!-- ================= STATISTIK ================= -->
+
+<section class="reveal">
+
+    <div class="stats">
+
+        <div class="info">
+
+            <div class="icon">
+                👨‍🎓
+            </div>
+
+            <h3 id="jumlah">
+                0
+            </h3>
+
+            <p>
+                Jumlah Anggota
+            </p>
+
+        </div>
+
+
+        <div class="info">
+
+            <div class="icon">
+                👨‍🏫
+            </div>
+
+            <h3>
+                1
+            </h3>
+
+            <p>
+                Walas
+            </p>
+
+        </div>
+
+
+        <div class="info">
+
+            <div class="icon">
+                ✨
+            </div>
+
+            <h3>
+                PICOVERSE
+            </h3>
+
+            <p>
+                Nama Kelas
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STRUKTUR KELAS ================= -->
+
+<section id="struktur" class="reveal">
+
+    <div class="judul">
+
+        <h2>
+            👑 Struktur Kelas
+        </h2>
+
+        <p>
+            Susunan pengurus kelas PICOVERSE
+        </p>
+
+    </div>
+
+
+    <div class="struktur">
+
+
+        <!-- WALAS -->
+
+        <div class="card">
+
+            <div class="foto">
+
+                <img
+                    src="foto/walas.jpg"
+                    alt="Foto Walas"
+                    onerror="fotoPengurusError(this,'👩‍🏫')"
+                >
+
+            </div>
+
+            <div class="jabatan">
+                WALAS
+            </div>
+
+            <div class="nama">
+                LIDYA DEFEGA
+            </div>
+
+        </div>
+
+
+        <div class="garis"></div>
+
+
+        <!-- KETUA DAN WAKIL -->
+
+        <div class="baris">
+
+
+            <!-- KETUA -->
+
+            <div class="card">
+
+                <div class="foto">
+
+                    <img
+                        src="foto/ketua.jpg"
+                        alt="Foto Ketua Kelas"
+                        onerror="fotoPengurusError(this,'👑')"
+                    >
+
+                </div>
+
+                <div class="jabatan">
+                    KETUA KELAS
+                </div>
+
+                <div class="nama">
+                    PRABU JAYA NEGARA
+                </div>
+
+            </div>
+
+
+            <!-- WAKIL -->
+
+            <div class="card">
+
+                <div class="foto">
+
+                    <img
+                        src="foto/wakil.jpg"
+                        alt="Foto Wakil Ketua"
+                        onerror="fotoPengurusError(this,'⭐')"
+                    >
+
+                </div>
+
+                <div class="jabatan">
+                    WAKIL KETUA
+                </div>
+
+                <div class="nama">
+                    MAULANA MUHAMMAD FATHAN
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="garis"></div>
+
+
+        <!-- SEKRETARIS DAN BENDAHARA -->
+
+        <div class="baris">
+
+
+            <!-- SEKRETARIS -->
+
+            <div class="card">
+
+                <div class="foto">
+
+                    <img
+                        src="foto/sekretaris.jpg"
+                        alt="Foto Sekretaris"
+                        onerror="fotoPengurusError(this,'📝')"
+                    >
+
+                </div>
+
+                <div class="jabatan">
+                    SEKRETARIS
+                </div>
+
+                <div class="nama">
+                    -
+                </div>
+
+            </div>
+
+
+            <!-- BENDAHARA -->
+
+            <div class="card">
+
+                <div class="foto">
+
+                    <img
+                        src="foto/bendahara.jpg"
+                        alt="Foto Bendahara"
+                        onerror="fotoPengurusError(this,'💰')"
+                    >
+
+                </div>
+
+                <div class="jabatan">
+                    BENDAHARA
+                </div>
+
+                <div class="nama">
+                    -
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ANGGOTA ================= -->
+
+<section
+    id="anggota"
+    class="siswa-section reveal"
+>
+
+    <div class="judul">
+
+        <h2>
+            👥 Daftar Anggota
+        </h2>
+
+        <p>
+            Anggota PICOVERSE — klik nama untuk melihat detail
+        </p>
+
+    </div>
+
+
+    <input
+        id="search"
+        class="search"
+        type="text"
+        placeholder="🔎 Cari nama siswa..."
+        oninput="render()"
+    >
+
+
+    <div class="filter">
+
+        <button
+            class="active"
+            onclick="filterAbjad('semua', this)"
+        >
+            Semua
+        </button>
+
+        <button
+            onclick="filterAbjad('awal', this)"
+        >
+            A–I
+        </button>
+
+        <button
+            onclick="filterAbjad('akhir', this)"
+        >
+            J–Z
+        </button>
+
+    </div>
+
+
+    <div
+        class="daftar-siswa"
+        id="daftarSiswa"
+    ></div>
+
+</section>
+
+
+<!-- ================= PRESTASI ================= -->
+
+<section
+    id="prestasi"
+    class="achievement-wrap reveal"
+>
+
+    <div class="judul">
+
+        <h2>
+            🏆 Prestasi Kelas
+        </h2>
+
+        <p>
+            Tambahkan pencapaian PICOVERSE di sini
+        </p>
+
+    </div>
+
+
+    <div class="achievements">
+
+
+        <div class="achievement">
+
+            <div class="trophy">
+                🥇
+            </div>
+
+            <h3>
+                Prestasi Pertama
+            </h3>
+
+            <p>
+                KOSSMI Nasional
+            </p>
+
+        </div>
+
+
+        <div class="achievement">
+
+            <div class="trophy">
+                🏆
+            </div>
+
+            <h3>
+                Prestasi Kedua
+            </h3>
+
+            <p>
+                FINALIS OSN
+            </p>
+
+        </div>
+
+
+        <div class="achievement">
+
+            <div class="trophy">
+                🥈
+            </div>
+
+            <h3>
+                Prestasi Ketiga
+            </h3>
+
+            <p>
+                Tambahkan detail prestasi
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+```
+
+</div>
+
+<!-- ================= MODAL ================= -->
+
+<div
+    class="modal"
+    id="modal"
+>
+
+```
+<div class="modal-box">
+
+    <button
+        class="close"
+        onclick="closeModal()"
+    >
+        ×
+    </button>
+
+
+    <img
+        id="modalFoto"
+        class="modal-icon"
+        src=""
+        alt="Foto siswa"
+    >
+
+
+    <h2 id="modalName">
+        Nama
+    </h2>
+
+
+    <div class="bio">
+
+        <p>
+            🔢 Nomor:
+            <span id="modalNomor"></span>
+        </p>
+
+        <p>
+            🏫 Kelas:
+            <span id="modalKelas"></span>
+        </p>
+
+        <p>
+            🏫 Sekolah:
+            SMAN 1 SUMATERA BARAT
+        </p>
+
+        <p>
+            📝 Keterangan:
+            <span id="modalKeterangan"></span>
+        </p>
+
+        <p>
+            🎮 Hobi:
+            <span id="modalHobi"></span>
+        </p>
+
+        <p>
+            🎯 Cita-cita:
+            <span id="modalCita"></span>
+        </p>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+```
+<p>
+    © IJUD • Struktur Kelas
+</p>
+
+<p style="margin-top:8px;opacity:.7">
+    SMAN 1 SUMATERA BARAT
+</p>
+```
+
+</footer>
+
+<script>
+
+/* =====================================================
+   DATA ANGGOTA
+   ===================================================== */
+
+const siswa = [
+
+    {
+        nomor: 1,
+        nama: "Alfa Raferio",
+        foto: "foto/alfa.jpg",
+        kelas: "PICOVERSE",
+        keterangan: "Anak OLYM",
+        hobi: "-",
+        citaCita: "-"
+    },
+
+    {
+        nomor: 2,
+        nama: "Byantara Arkana",
+        foto: "foto/byantara.jpg",
+        kelas: "PICOVERSE",
+        keterangan: "-",
+        hobi: "-",
+        citaCita: "-"
+    },
+
+    {
+        nomor: 3,
+        nama: "Delvin Alvaro",
+        foto: "foto/delvin.jpg",
+        kelas: "PICOVERSE",
+        keterangan: "Anak OLYM",
+        hobi: "-",
+        citaCita: "-"
+    },
+
+    {
+        nomor: 4,
+        nama: "Dzaky Alhady",
+        foto: "foto/dzaky.jpg",
+        kelas: "PICOVERSE",
+        keterangan: "Anak OLYM",
+        hobi: "-",
+        citaCita: "-"
+    },
+
+    {
+        nomor: 5,
+        nama: "Irsyad Akbar",
+        foto: "foto/irsyad.jpg",
+        kelas: "PICOVERSE",
+        keterangan: "Anak OLYM",
+        hobi: "-",
+        citaCita: "-"
+    },
+
+    {
+        nomor: 6,
+        nama: "Izzuddin Hilmi",
+        foto: "foto/izzuddin.jpg",
+        kelas: "PICOVERSE",
+        keterangan: "Anak OLYM",
+        hobi: "Programming",
+        citaCita: "-"
+    },
+
+
+];
+
+
+/* =====================================================
+   FILTER
+   ===================================================== */
+
+let filter = "semua";
+
+
+/* =====================================================
+   PLACEHOLDER FOTO
+   ===================================================== */
+
+function fotoError(img) {
+
+    img.onerror = null;
+
+    img.src =
+        "https://placehold.co/100x100/2563eb/ffffff?text=Foto";
+}
+
+
+function fotoPengurusError(img, emoji) {
+
+    const parent = img.parentElement;
+
+    img.remove();
+
+    parent.innerHTML =
+        `<span style="font-size:34px">${emoji}</span>`;
+}
+
+
+function logoError(img) {
+
+    const parent = img.parentElement;
+
+    img.remove();
+
+    parent.innerHTML =
+        '<span class="logo-fallback">P</span>';
+}
+
+
+/* =====================================================
+   RENDER DAFTAR SISWA
+   ===================================================== */
+
+function render() {
+
+    const box =
+        document.getElementById("daftarSiswa");
+
+    const searchInput =
+        document.getElementById("search");
+
+    const q =
+        searchInput.value
+        .toLowerCase()
+        .trim();
+
+    box.innerHTML = "";
+
+
+    const hasil =
+        siswa.filter(s => {
+
+            const cocokNama =
+                s.nama
+                .toLowerCase()
+                .includes(q);
+
+
+            const huruf =
+                s.nama[0].toLowerCase();
+
+
+            const cocokFilter =
+
+                filter === "semua"
+
+                ||
+
+                (
+                    filter === "awal" &&
+                    huruf >= "a" &&
+                    huruf <= "i"
+                )
+
+                ||
+
+                (
+                    filter === "akhir" &&
+                    huruf >= "j" &&
+                    huruf <= "z"
+                );
+
+
+            return cocokNama && cocokFilter;
+
+        });
+
+
+    /* JUMLAH ANGGOTA */
+
+    document
+        .getElementById("jumlah")
+        .textContent = siswa.length;
+
+
+    /* TIDAK ADA HASIL */
+
+    if (!hasil.length) {
+
+        box.innerHTML =
+            '<div class="no-result">😕 Nama siswa tidak ditemukan.</div>';
+
+        return;
+    }
+
+
+    /* MEMBUAT KARTU */
+
+    hasil.forEach(s => {
+
+        const el =
+            document.createElement("div");
+
+        el.className = "siswa";
+
+
+        el.innerHTML = `
+
+            <img
+                class="foto-siswa"
+                src="${s.foto}"
+                alt="${s.nama}"
+                onerror="fotoError(this)"
+            >
+
+            <div>
+
+                <div class="nomor">
+                    ${s.nomor}
+                </div>
+
+                <div class="siswa-name">
+                    ${s.nama}
+                </div>
+
+            </div>
+
+        `;
+
+
+        el.onclick =
+            () => openModal(s);
+
+
+        box.appendChild(el);
+
+    });
+
+}
+
+
+/* =====================================================
+   FILTER A-Z
+   ===================================================== */
+
+function filterAbjad(value, btn) {
+
+    filter = value;
+
+
+    document
+        .querySelectorAll(".filter button")
+        .forEach(button => {
+
+            button.classList.remove("active");
+
+        });
+
+
+    btn.classList.add("active");
+
+
+    render();
+
+}
+
+
+/* =====================================================
+   MODAL
+   ===================================================== */
+
+function openModal(s) {
+
+    document
+        .getElementById("modalName")
+        .textContent = s.nama;
+
+
+    document
+        .getElementById("modalNomor")
+        .textContent = s.nomor;
+
+
+    document
+        .getElementById("modalKelas")
+        .textContent = s.kelas;
+
+
+    document
+        .getElementById("modalKeterangan")
+        .textContent = s.keterangan;
+
+
+    document
+        .getElementById("modalHobi")
+        .textContent = s.hobi;
+
+
+    document
+        .getElementById("modalCita")
+        .textContent = s.citaCita;
+
+
+    const modalFoto =
+        document.getElementById("modalFoto");
+
+
+    modalFoto.src = s.foto;
+
+    modalFoto.alt =
+        "Foto " + s.nama;
+
+
+    modalFoto.onerror = function() {
+
+        this.onerror = null;
+
+        this.src =
+            "https://placehold.co/200x200/2563eb/ffffff?text=Foto";
+
+    };
+
+
+    document
+        .getElementById("modal")
+        .classList.add("active");
+
+}
+
+
+/* =====================================================
+   CLOSE MODAL
+   ===================================================== */
+
+function closeModal() {
+
+    document
+        .getElementById("modal")
+        .classList.remove("active");
+
+}
+
+
+/* KLIK LUAR MODAL */
+
+document
+    .getElementById("modal")
+    .addEventListener("click", function(e) {
+
+        if (e.target === this) {
+
+            closeModal();
+
+        }
+
+    });
+
+
+/* ESC UNTUK MENUTUP MODAL */
+
+document.addEventListener("keydown", function(e) {
+
+    if (e.key === "Escape") {
+
+        closeModal();
+
+    }
+
+});
+
+
+/* =====================================================
+   SCROLL PROGRESS
+   ===================================================== */
+
+window.addEventListener("scroll", function() {
+
+    const scrollTop =
+        window.scrollY;
+
+
+    const documentHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+
+
+    if (documentHeight <= 0) {
+
+        return;
+
+    }
+
+
+    const progress =
+        (scrollTop / documentHeight) * 100;
+
+
+    document
+        .getElementById("scrollProgress")
+        .style.width =
+        progress + "%";
+
+});
+
+
+/* =====================================================
+   SCROLL REVEAL
+   ===================================================== */
+
+const observer =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target
+                        .classList
+                        .add("show");
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.15
+        }
+
+    );
+
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(section => {
+
+        observer.observe(section);
+
+    });
+
+
+/* =====================================================
+   VIDEO ERROR HANDLING
+   ===================================================== */
+
+const video =
+    document.querySelector(".video-bg");
+
+
+video.addEventListener("error", function() {
+
+    this.style.display = "none";
+
+});
+
+
+/* =====================================================
+   JALANKAN WEBSITE
+   ===================================================== */
+
+render();
+
+</script>
+
+</body>
+</html>
