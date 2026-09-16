@@ -18,9 +18,10 @@ html {
     scroll-behavior: smooth;
 }
 
+/* UBAH: Latar Belakang Utama Menjadi Violet Gelap */
 body {
-    background: #f1f5f9;
-    color: #172033;
+    background: #1e1b4b; /* Dark Violet / Indigo */
+    color: #f1f5f9;
 }
 
 /* ================= SCROLL PROGRESS ================= */
@@ -30,7 +31,7 @@ body {
     left: 0;
     width: 0%;
     height: 4px;
-    background: #2563eb;
+    background: #8b5cf6;
     z-index: 9999;
 }
 
@@ -62,9 +63,9 @@ header {
     inset: 0;
     background: linear-gradient(
         135deg,
-        rgba(15, 23, 42, 0.85),
-        rgba(37, 99, 235, 0.60),
-        rgba(79, 70, 229, 0.70)
+        rgba(30, 27, 75, 0.85),
+        rgba(109, 40, 217, 0.60),
+        rgba(139, 92, 246, 0.70)
     );
     z-index: 1;
 }
@@ -161,9 +162,10 @@ nav {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(255,255,255,0.92);
+    /* UBAH: Latar Violet Transparan */
+    background: rgba(46, 16, 101, 0.85);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.3);
 }
 
 .nav-inner {
@@ -178,7 +180,7 @@ nav {
 
 nav a {
     text-decoration: none;
-    color: #334155;
+    color: #e2e8f0;
     font-weight: bold;
     padding: 9px 15px;
     border-radius: 9px;
@@ -186,8 +188,8 @@ nav a {
 }
 
 nav a:hover {
-    background: #dbeafe;
-    color: #2563eb;
+    background: #6d28d9;
+    color: #ffffff;
 }
 
 /* ================= CONTAINER ================= */
@@ -206,10 +208,11 @@ nav a:hover {
 .judul h2 {
     font-size: 30px;
     margin-bottom: 8px;
+    color: #ffffff;
 }
 
 .judul p {
-    color: #64748b;
+    color: #cbd5e1;
 }
 
 /* ================= STATISTIK ================= */
@@ -221,16 +224,20 @@ nav a:hover {
 }
 
 .info {
-    background: white;
+    /* UBAH: Kartu Violet Transparan */
+    background: rgba(46, 16, 101, 0.7);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    backdrop-filter: blur(8px);
     border-radius: 18px;
     padding: 24px;
     text-align: center;
-    box-shadow: 0 8px 28px rgba(15,23,42,0.07);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
     transition: 0.25s;
 }
 
 .info:hover {
     transform: translateY(-5px);
+    border-color: #8b5cf6;
 }
 
 .info .icon {
@@ -239,7 +246,7 @@ nav a:hover {
 
 .info h3 {
     font-size: 28px;
-    color: #2563eb;
+    color: #a78bfa;
     margin: 8px 0 4px;
 }
 
@@ -259,17 +266,21 @@ nav a:hover {
 }
 
 .card {
-    background: white;
+    /* UBAH: Kartu Violet Transparan */
+    background: rgba(46, 16, 101, 0.7);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    backdrop-filter: blur(8px);
     width: 235px;
     padding: 24px;
     border-radius: 18px;
     text-align: center;
-    box-shadow: 0 7px 25px rgba(15,23,42,0.08);
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.3);
     transition: 0.25s;
 }
 
 .card:hover {
     transform: translateY(-7px);
+    border-color: #8b5cf6;
 }
 
 .foto {
@@ -278,12 +289,12 @@ nav a:hover {
     margin: auto auto 15px;
     border-radius: 50%;
     overflow: hidden;
-    background: #dbeafe;
+    background: #311075;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 34px;
-    border: 3px solid #2563eb;
+    border: 3px solid #8b5cf6;
 }
 
 .foto img {
@@ -294,7 +305,7 @@ nav a:hover {
 }
 
 .jabatan {
-    color: #2563eb;
+    color: #a78bfa;
     font-weight: 800;
     font-size: 13px;
     letter-spacing: 0.5px;
@@ -304,12 +315,13 @@ nav a:hover {
     font-size: 18px;
     font-weight: 800;
     margin-top: 8px;
+    color: #ffffff;
 }
 
 .garis {
     width: 3px;
     height: 25px;
-    background: #2563eb;
+    background: #8b5cf6;
 }
 
 /* ================= ANGGOTA ================= */
@@ -323,18 +335,23 @@ nav a:hover {
     display: block;
     margin: 0 auto 18px;
     padding: 15px 18px;
-    border: 1px solid #cbd5e1;
+    border: 1px solid rgba(139, 92, 246, 0.4);
     border-radius: 12px;
     font-size: 16px;
     outline: none;
-    background: white;
-    color: #172033;
+    /* UBAH: Search Bar Violet Gelap */
+    background: rgba(30, 10, 60, 0.8);
+    color: #ffffff;
     transition: 0.2s;
 }
 
+.search::placeholder {
+    color: #a78bfa;
+}
+
 .search:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
+    border-color: #a78bfa;
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.25);
 }
 
 .filter {
@@ -349,8 +366,8 @@ nav a:hover {
     border: 0;
     padding: 9px 15px;
     border-radius: 999px;
-    background: #e2e8f0;
-    color: #334155;
+    background: rgba(76, 29, 149, 0.6);
+    color: #ddd6fe;
     cursor: pointer;
     font-weight: bold;
     transition: 0.2s;
@@ -358,10 +375,11 @@ nav a:hover {
 
 .filter button:hover {
     transform: translateY(-2px);
+    background: #6d28d9;
 }
 
 .filter button.active {
-    background: #2563eb;
+    background: #8b5cf6;
     color: white;
 }
 
@@ -372,10 +390,12 @@ nav a:hover {
 }
 
 .siswa {
-    background: white;
+    /* UBAH: Kartu Siswa Violet */
+    background: rgba(46, 16, 101, 0.7);
+    border: 1px solid rgba(139, 92, 246, 0.3);
     padding: 15px;
     border-radius: 14px;
-    box-shadow: 0 4px 15px rgba(15,23,42,0.06);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
     gap: 14px;
@@ -387,7 +407,8 @@ nav a:hover {
 
 .siswa:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(37,99,235,0.12);
+    border-color: #8b5cf6;
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
 }
 
 .foto-siswa {
@@ -395,7 +416,7 @@ nav a:hover {
     height: 58px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #2563eb;
+    border: 3px solid #8b5cf6;
     flex-shrink: 0;
     transition: 0.3s;
 }
@@ -404,7 +425,7 @@ nav a:hover {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: #2563eb;
+    background: #8b5cf6;
     color: white;
     display: flex;
     align-items: center;
@@ -416,6 +437,7 @@ nav a:hover {
 
 .siswa-name {
     font-weight: 700;
+    color: #ffffff;
     transition: 0.25s;
 }
 
@@ -423,7 +445,7 @@ nav a:hover {
     grid-column: 1 / -1;
     text-align: center;
     padding: 30px;
-    color: #64748b;
+    color: #cbd5e1;
 }
 
 /* ================= PRESTASI (TABEL) ================= */
@@ -434,9 +456,11 @@ nav a:hover {
 .tabel-container {
     width: 100%;
     overflow-x: auto;
-    background: white;
+    /* UBAH: Tabel Container Violet */
+    background: rgba(46, 16, 101, 0.7);
+    border: 1px solid rgba(139, 92, 246, 0.3);
     border-radius: 18px;
-    box-shadow: 0 7px 25px rgba(15,23,42,0.07);
+    box-shadow: 0 7px 25px rgba(0,0,0,0.3);
 }
 
 .tabel-prestasi {
@@ -446,7 +470,7 @@ nav a:hover {
 }
 
 .tabel-prestasi th {
-    background: #2563eb;
+    background: #6d28d9;
     color: white;
     padding: 16px 20px;
     font-size: 15px;
@@ -455,9 +479,10 @@ nav a:hover {
 
 .tabel-prestasi td {
     padding: 14px 20px;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.2);
     font-size: 15px;
     vertical-align: middle;
+    color: #e2e8f0;
 }
 
 .tabel-prestasi tr:last-child td {
@@ -465,12 +490,11 @@ nav a:hover {
 }
 
 .tabel-prestasi tr:hover {
-    background: #f8fafc;
+    background: rgba(109, 40, 217, 0.3);
 }
 
-/* Pemisah tebal antar baris siswa */
 .tabel-prestasi tbody tr:has(td[rowspan]) {
-    border-top: 2px solid #cbd5e1;
+    border-top: 2px solid rgba(139, 92, 246, 0.4);
 }
 
 .col-no {
@@ -481,7 +505,7 @@ nav a:hover {
 
 .col-nama {
     font-weight: bold;
-    color: #0f172a;
+    color: #ffffff;
     width: 220px;
 }
 
@@ -499,7 +523,7 @@ nav a:hover {
 .modal {
     position: fixed;
     inset: 0;
-    background: rgba(2,6,23,0.75);
+    background: rgba(15, 10, 30, 0.85);
     display: none;
     align-items: center;
     justify-content: center;
@@ -512,7 +536,10 @@ nav a:hover {
 }
 
 .modal-box {
-    background: white;
+    /* UBAH: Modal Violet Gelap */
+    background: #2e1065;
+    border: 1px solid #8b5cf6;
+    color: #ffffff;
     width: 100%;
     max-width: 440px;
     max-height: 90vh;
@@ -532,7 +559,7 @@ nav a:hover {
     background: none;
     font-size: 27px;
     cursor: pointer;
-    color: #172033;
+    color: #a78bfa;
 }
 
 .modal-icon {
@@ -540,10 +567,10 @@ nav a:hover {
     height: 120px;
     border-radius: 50%;
     margin: auto auto 15px;
-    background: #dbeafe;
+    background: #311075;
     display: block;
     object-fit: cover;
-    border: 4px solid #2563eb;
+    border: 4px solid #8b5cf6;
 }
 
 .bio {
@@ -553,7 +580,7 @@ nav a:hover {
 }
 
 .bio p {
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.3);
     padding: 5px 0;
 }
 
@@ -820,12 +847,12 @@ const siswa = [
     { nomor: 31, nama: "RADITYA KHAISYA", foto: "foto/raditya.jpg", kelas: "PICOVERSE", bidang: "Geografi", hobi: "-", citaCita: "-" },
     { nomor: 32, nama: "RAHMAN HALIM ADRIAN", foto: "foto/rahman.jpg", kelas: "PICOVERSE", bidang: "Kimia", hobi: "-", citaCita: "-" },
     { nomor: 33, nama: "RESKI MAULANA SHANDY", foto: "foto/reski.jpg", kelas: "PICOVERSE", bidang: "Astronomi", hobi: "-", citaCita: "-" },
-    { nomor: 34, nama: "SAID KOSALI KAUTSAR", foto: "foto/said.jpg", kelas: "PICOVERSE", bidang: "Astronomi", hobi: "-", citaCita: "-" },
+    { nomor: 34, nama: "SAID KOSALI KAUTSAR", foto: "foto/said.jpg", kelas: "PICOVERSE", bidang: "", hobi: "-", citaCita: "-" },
     { nomor: 35, nama: "SITI ALIFA JIHANITA", foto: "foto/sitialifa.jpg", kelas: "PICOVERSE", bidang: "-", hobi: "-", citaCita: "-" },
     { nomor: 36, nama: "SULTHAN ALKHAIRI ANDRIANSYAH", foto: "foto/Ari.jpg", kelas: "PICOVERSE", bidang: "Astronomi", hobi: "Nonton", citaCita: "-" }
 ];
 
-/* DATA PRESTASI BERBENTUK TABEL (Multi-prestasi & bidang) */
+/* DATA PRESTASI BERBENTUK TABEL */
 const dataPrestasi = [
     {
         no: 1,
@@ -853,9 +880,7 @@ const dataPrestasi = [
         daftar: [
             { ikon: "🥉", prestasi: "Medali Perunggu KOSSMI", bidang: "Astronomi" }
         ]
-    },
-    
-    
+    }
 ];
 
 let filter = "semua";
@@ -863,7 +888,7 @@ let filter = "semua";
 /* ERROR HANDLING FOTO */
 function fotoError(img) {
     img.onerror = null;
-    img.src = "https://placehold.co/100x100/2563eb/ffffff?text=Foto";
+    img.src = "https://placehold.co/100x100/8b5cf6/ffffff?text=Foto";
 }
 function fotoPengurusError(img, emoji) {
     const parent = img.parentElement;
@@ -938,13 +963,13 @@ function openModal(s) {
     modalFoto.alt = "Foto " + s.nama;
     modalFoto.onerror = function() {
         this.onerror = null;
-        this.src = "https://placehold.co/200x200/2563eb/ffffff?text=Foto";
+        this.src = "https://placehold.co/200x200/8b5cf6/ffffff?text=Foto";
     };
 
     document.getElementById("modal").classList.add("active");
 }
 
-/* RENDER TABEL PRESTASI (Menggunakan Rowspan) */
+/* RENDER TABEL PRESTASI */
 function renderPrestasiTabel() {
     const tbody = document.getElementById("bodyTabelPrestasi");
     tbody.innerHTML = "";
